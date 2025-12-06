@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Product extends Model
 {
@@ -17,4 +18,8 @@ class Product extends Model
         'reviews',
         'image',
     ];
+
+    protected function scopeCategory(Builder $query, string $category) : void {
+        $query->where('category', $category);
+    }
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>PetTB</title>
+    <title>@yield('title', 'PeTB')</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -142,7 +142,7 @@
                 <div class="col-sm-4 col-lg-3 text-center text-sm-start">
                     <div class="main-logo">
                         <a href="/">
-                            <img src="images/logo.png" alt="logo" class="img-fluid">
+                            <img src="{{ asset('images/logo.png') }}" alt="logo" class="img-fluid">
                         </a>
                     </div>
                 </div>
@@ -177,17 +177,15 @@
                     <div class="offcanvas-body justify-content-between">
                         <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
                             <li class="nav-item">
-                                <a href="/" class="nav-link active">Home</a>
+                                <a href="{{ route('home') }}" class="nav-link active">Home</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown"
-                                    aria-expanded="false">Product Lists</a>
+                                    aria-expanded="false">Products</a>
                                 <ul class="dropdown-menu" aria-labelledby="pages">
-                                    <li><a href="index.html" class="dropdown-item">a</a></li>
-                                    <li><a href="#categories" class="dropdown-item">b</a></li>
-                                    <li><a href="index.html" class="dropdown-item">c</a></li>
-                                    <li><a href="index.html" class="dropdown-item">d</a></li>
-                                    <li><a href="index.html" class="dropdown-item">e</a></li>
+                                    <li><a href="{{ route('products', 'cloth') }}" class="dropdown-item">Cloth</a></li>
+                                    <li><a href="{{ route('products', 'food') }}" class="dropdown-item">Food</a></li>
+                                    <li><a href="{{ route('products', 'toy') }}" class="dropdown-item">Toy</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
@@ -280,7 +278,7 @@
                     <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
                 </div>
                 <a href="#">
-                    <img src="images/insta1.jpg" alt="insta-img" class="img-fluid rounded-3">
+                    <img src="{{ asset('images/insta1.jpg') }}" alt="insta-img" class="img-fluid rounded-3">
                 </a>
             </div>
             <div class="col instagram-item  text-center position-relative">
@@ -288,7 +286,7 @@
                     <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
                 </div>
                 <a href="#">
-                    <img src="images/insta2.jpg" alt="insta-img" class="img-fluid rounded-3">
+                    <img src="{{ asset('images/insta2.jpg') }}" alt="insta-img" class="img-fluid rounded-3">
                 </a>
             </div>
             <div class="col instagram-item  text-center position-relative">
@@ -296,7 +294,7 @@
                     <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
                 </div>
                 <a href="#">
-                    <img src="images/insta3.jpg" alt="insta-img" class="img-fluid rounded-3">
+                    <img src="{{ asset('images/insta3.jpg') }}" alt="insta-img" class="img-fluid rounded-3">
                 </a>
             </div>
             <div class="col instagram-item  text-center position-relative">
@@ -304,7 +302,7 @@
                     <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
                 </div>
                 <a href="#">
-                    <img src="images/insta4.jpg" alt="insta-img" class="img-fluid rounded-3">
+                    <img src="{{ asset('images/insta4.jpg') }}" alt="insta-img" class="img-fluid rounded-3">
                 </a>
             </div>
             <div class="col instagram-item  text-center position-relative">
@@ -312,7 +310,7 @@
                     <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
                 </div>
                 <a href="#">
-                    <img src="images/insta5.jpg" alt="insta-img" class="img-fluid rounded-3">
+                    <img src="{{ asset('images/insta5.jpg') }}" alt="insta-img" class="img-fluid rounded-3">
                 </a>
             </div>
             <div class="col instagram-item  text-center position-relative">
@@ -320,7 +318,7 @@
                     <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
                 </div>
                 <a href="#">
-                    <img src="images/insta6.jpg" alt="insta-img" class="img-fluid rounded-3">
+                    <img src="{{ asset('images/insta6.jpg') }}" alt="insta-img" class="img-fluid rounded-3">
                 </a>
             </div>
         </div>
@@ -331,7 +329,7 @@
             <div class="d-flex justify-content-evenly">
                 <div class="col-md-3">
                     <div class="footer-menu">
-                        <img src="images/logo.png" alt="logo">
+                        <img src="{{ asset('images/logo.png') }}" alt="logo">
                         <p class="blog-paragraph fs-6 mt-3">Subscribe to our newsletter to get updates about our grand offers.</p>
                         <div class="social-links">
                             <ul class="d-flex list-unstyled gap-2">

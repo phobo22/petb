@@ -16,7 +16,7 @@
                                 <h2 class="banner-title display-1 fw-normal">Best destination for
                                     <span class="text-primary">your pets's nutrition</span>
                                 </h2>
-                                <a href="#clothing" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                                <a href="{{ route('products', 'food') }}" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                                     shop now
                                     <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                                         <use xlink:href="#arrow-right"></use>
@@ -32,9 +32,9 @@
                             </div>
                             <div class="content-wrapper col-md-7 p-5 mb-5">
                                 <h2 class="banner-title display-1 fw-normal">Best destination for
-                                    <span class="text-primary">your pets's smell</span>
+                                    <span class="text-primary">your pets's hobbies</span>
                                 </h2>
-                                <a href="#foodies" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                                <a href="{{ route('products', 'toy') }}" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                                     shop now
                                     <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                                         <use xlink:href="#arrow-right"></use>
@@ -52,7 +52,7 @@
                                 <h2 class="banner-title display-1 fw-normal">Best destination for
                                     <span class="text-primary">your pets's fashion</span>
                                 </h2>
-                                <a href="#bestselling" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                                <a href="{{ route('products', 'cloth') }}" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                                     shop now
                                     <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                                         <use xlink:href="#arrow-right"></use>
@@ -67,9 +67,9 @@
         </div>
     </section>
 
-    <x-product-section type="clothing" typeTitle="Pet Clothing" :products="$products"/>
-    <x-product-section type="foodies" typeTitle="Pet Foodies" :products="$products"/>
-    <x-product-section type="bestselling" typeTitle="Best Seller" :products="$products"/>
+    <x-product-section type="cloth" typeTitle="Pet Clothing" :products="$products"/>
+    <x-product-section type="food" typeTitle="Pet Food" :products="$products"/>
+    <x-product-section type="toy" typeTitle="Pet Toy" :products="$products"/>
 
     <section id="banner-2" class="my-3" style="background: #F9F3EC;">
         <div class="container">
