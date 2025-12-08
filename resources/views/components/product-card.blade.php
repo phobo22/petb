@@ -2,11 +2,11 @@
 
 <div class="swiper-slide">
     <div class="card position-relative">
-        <a href="single-product.html">
+        <a href="{{ route('show-product', $product) }}>
             <img src="{{ asset('storage/products/' . $product->image) }}" class="img-fluid rounded-4" alt="image">
         </a>
         <div class="card-body p-0">
-            <a href="single-product.html">
+            <a href="{{ route('show-product', $product) }}">
                 <h3 class="card-title pt-4 m-0">{{ $product->name }}</h3>
             </a>
             <div class="card-text">
