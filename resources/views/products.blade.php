@@ -1,4 +1,4 @@
-@props(['products', 'fors'])
+@props(['products', 'dog', 'cat', 'sort'])
 
 @extends('layouts.app')
 
@@ -9,10 +9,10 @@
         <div class="container pb-5">
             <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
                 <div>
-                    <x-filter :fors="$fors" />
+                    <x-filter :dog="$dog" :cat="$cat" />
                 </div>
                 <div>
-                    Sorting
+                    <x-sort :sort="$sort" />
                 </div>
             </div>
 
@@ -23,6 +23,7 @@
                     @endforeach
                 </div>
             </div>
+            <div class="mt-5">{{ $products->links('pagination::bootstrap-5') }}</div>
         </div>
     </section>
 

@@ -18,9 +18,9 @@ class ProductFactory extends Factory
     {
         return [
             'name' => fake()->words(2, true),
-            'category' => fake()->randomElement(['clothing', 'food', 'toy']),
+            'category' => fake()->randomElement(['cloth', 'food', 'toy']),
             'for' => fake()->randomElement(['dog', 'cat']),
-            'price' => fake()->randomFloat(2, 3, 30),
+            'price' => fake()->randomFloat(2, 2, 30),
             'reviews' => fake()->randomElement([0, 1, 2, 3, 4, 5]),
             'image' => fake()->randomElement(['item1', 'item2', 'item3', 'item4']) . '.jpg',
         ];

@@ -22,4 +22,25 @@ class Product extends Model
     protected function scopeCategory(Builder $query, string $category) : void {
         $query->where('category', $category);
     }
+
+    protected function scopeSearch(Builder $query, string $name) : void {
+        $query->where('name', 'like', '%' . $name . '%');
+    }
+
+    protected function scopeFilter(Builder $query, array $req) {
+        if ($req['dog'] && $req['cat'])
+            $query->where('for', 'dog')->orWhere('for', 'cat');
+        elseif ($req['dog'])
+            $query->where('for', 'dog');
+        elseif ($req['cat'])
+            $query->where('for', 'cat');
+
+        if ($req['price']) {
+            if ($req['price'] === 'asc') $query->orderBy('price', 'asc');
+            else $query->orderBy('price', 'desc');
+        } else {
+            if ($req['rating'] === 'asc') $query->orderBy('reviews', 'asc');
+            else $query->orderBy('reviews', 'desc');
+        }
+    }
 }
