@@ -14,13 +14,11 @@ class ProductsSeeder extends Seeder
     public function run(): void
     {
         Product::factory()
-            ->count(4)
-            ->sequence(
-                ['image' => 'item1.jpg'],
-                ['image' => 'item2.jpg'],
-                ['image' => 'item3.jpg'],
-                ['image' => 'item4.jpg'],
-            )
+            ->count(16)
+            ->sequence(fn ($sequence) => [
+                'category' => ['cloth', 'food', 'toy'][$sequence->index % 3],
+                'image' => 'item' . ($sequence->index + 1) . '.jpg',
+            ])
             ->create();
     }
 }

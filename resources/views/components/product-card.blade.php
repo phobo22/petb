@@ -1,6 +1,6 @@
 @props(['product'])
 
-<div class="swiper-slide">
+<div class="swiper-slide mb-4">
     <div class="card position-relative">
         <a href="single-product.html">
             <img src="{{ asset('storage/products/' . $product->image) }}" class="img-fluid rounded-4" alt="image">
@@ -12,13 +12,13 @@
             <div class="card-text">
                 <span class="rating secondary-font">
                     <iconify-icon icon="clarity:star-solid" class="{{ $product->reviews > 0 ? 'text-primary' : '' }}"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="{{ $product->reviews > 1 ? 'text-primary' : '' }} }}"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="{{ $product->reviews > 2 ? 'text-primary' : '' }} }}"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="{{ $product->reviews > 3 ? 'text-primary' : '' }} }}"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="{{ $product->reviews > 4 ? 'text-primary' : '' }} }}"></iconify-icon>
+                    <iconify-icon icon="clarity:star-solid" class="{{ $product->reviews > 1 ? 'text-primary' : '' }}"></iconify-icon>
+                    <iconify-icon icon="clarity:star-solid" class="{{ $product->reviews > 2 ? 'text-primary' : '' }}"></iconify-icon>
+                    <iconify-icon icon="clarity:star-solid" class="{{ $product->reviews > 3 ? 'text-primary' : '' }}"></iconify-icon>
+                    <iconify-icon icon="clarity:star-solid" class="{{ $product->reviews > 4 ? 'text-primary' : '' }}"></iconify-icon>
                     {{ $product->reviews }}.0
                 </span>
-                <h3 class="secondary-font text-primary">$18.00</h3>
+                <h3 class="secondary-font text-primary">${{ $product->price }}</h3>
                 <div class="d-flex flex-wrap mt-3">
                     <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
                         <h5 class="text-uppercase m-0">Add to Cart</h5>
