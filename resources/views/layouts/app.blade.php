@@ -201,18 +201,35 @@
 
                         <div class="d-none d-lg-flex align-items-end">
                             <ul class="d-flex justify-content-end list-unstyled m-0">
-                                <li>
-                                    <a href="index.html" class="mx-3">
-                                        <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
-                                    </a>
+                                <li class="nav-item dropdown">
+                                    @auth
+                                        <a class="nav-link" role="button" id="pages" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="pages">
+                                            <li><a href="{{ route('category', 'cloth') }}" class="dropdown-item">Settings</a></li>
+                                            <li><a href="{{ route('category', 'food') }}" class="dropdown-item">Logout</a></li>
+                                        </ul>
+                                    @endauth
+
+                                    @guest
+                                        <a href="{{ route('login') }}" class="nav-link" role="button" id="pages" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
+                                        </a>
+                                    @endguest
                                 </li>
-                                <li class="">
-                                    <a href="index.html" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
-                                        aria-controls="offcanvasCart">
-                                        <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
-                                        <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">03</span>
-                                    </a>
-                                </li>
+
+                                @auth
+                                    <li class="">
+                                        <a href="index.html" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
+                                            aria-controls="offcanvasCart">
+                                            <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
+                                            <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">03</span>
+                                        </a>
+                                    </li>
+                                @endauth
                             </ul>
                         </div>
                     </div>

@@ -38,4 +38,17 @@ class ProductController extends Controller
             ))),
         ]);
     }
+
+    public function show(Product $product) {
+        $query = Product::query();
+        //$query->search($product->name);
+        $query->category($product->category);
+
+        $relatedProducts = $query->whereNot('id', $product->id)->paginate(8);
+
+        return view('single-product', [
+            'product' => $product,
+            'relatedProducts' => $relatedProducts,
+        ]);
+    }
 }

@@ -2,11 +2,11 @@
 
 <div class="swiper-slide mb-4">
     <div class="card position-relative">
-        <a href="single-product.html">
+        <a href="{{ route('show-product', $product) }}">
             <img src="{{ asset('storage/products/' . $product->image) }}" class="img-fluid rounded-4" alt="image">
         </a>
         <div class="card-body p-0">
-            <a href="single-product.html">
+            <a href="{{ route('show-product', $product) }}">
                 <h3 class="card-title pt-4 m-0">{{ $product->name }}</h3>
             </a>
             <div class="card-text">
@@ -22,9 +22,6 @@
                 <div class="d-flex flex-wrap mt-3">
                     <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
                         <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
                     </a>
                 </div>
             </div>
