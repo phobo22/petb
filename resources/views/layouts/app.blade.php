@@ -148,7 +148,7 @@
                 </div>
                 <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
                     <div class="search-bar border rounded-2 px-3 border-dark-subtle">
-                        <form id="search-form" class="text-center d-flex align-items-center" action="{{ request()->is('/') ? route('products') : url()->current() }}" method="GET">
+                        <form id="search-form" class="text-center d-flex align-items-center" action="{{ request()->is('/') ? route('products.index') : url()->current() }}" method="GET">
                             <input type="text" name="search" class="form-control border-0 bg-transparent"
                                 placeholder="Search for more than 10,000 products" />
                             @foreach (request()->except('search') as $key => $value)
@@ -186,9 +186,9 @@
                                 <a class="nav-link dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown"
                                     aria-expanded="false">Products</a>
                                 <ul class="dropdown-menu" aria-labelledby="pages">
-                                    <li><a href="{{ route('category', 'cloth') }}" class="dropdown-item">Cloth</a></li>
-                                    <li><a href="{{ route('category', 'food') }}" class="dropdown-item">Food</a></li>
-                                    <li><a href="{{ route('category', 'toy') }}" class="dropdown-item">Toy</a></li>
+                                    <li><a href="{{ route('products.category', 'cloth') }}" class="dropdown-item">Cloth</a></li>
+                                    <li><a href="{{ route('products.category', 'food') }}" class="dropdown-item">Food</a></li>
+                                    <li><a href="{{ route('products.category', 'toy') }}" class="dropdown-item">Toy</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
@@ -208,14 +208,18 @@
                                             <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="pages">
-                                            <li><a href="{{ route('category', 'cloth') }}" class="dropdown-item">Settings</a></li>
-                                            <li><a href="{{ route('category', 'food') }}" class="dropdown-item">Logout</a></li>
+                                            <li><a href="{{ route('profile.show', auth()->user()->profile ) }}" class="dropdown-item">Settings</a></li>
+                                            <li>
+                                                <form action="{{ route('logout') }}" method="POST" onclick="this.submit()">
+                                                    @csrf
+                                                    <a class="dropdown-item">Logout</a>
+                                                </form> 
+                                            </li>
                                         </ul>
                                     @endauth
 
                                     @guest
-                                        <a href="{{ route('login') }}" class="nav-link" role="button" id="pages" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
+                                        <a href="{{ route('login.page') }}" class="nav-link" id="pages" aria-expanded="false">
                                             <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
                                         </a>
                                     @endguest

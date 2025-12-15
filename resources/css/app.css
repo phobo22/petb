@@ -457,7 +457,6 @@ iconify-icon.quote-icon {
   color: #908F8D;
   line-height: normal;
   letter-spacing: 0.02125rem;
-  text-transform: capitalize;
   border-radius: 0.25rem;
   border: 1px solid rgba(65, 64, 62, 0.20);
   background: #FFF;
@@ -466,6 +465,14 @@ iconify-icon.quote-icon {
   align-items: center;
   gap: 0.375rem;
   align-self: stretch;
+}
+
+.my-form {
+  background-color: #F7E6D0;
+}
+
+.my-field {
+  background-color: #F2EDE6;
 }
 
 .form-control:focus {

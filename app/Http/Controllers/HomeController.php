@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -16,18 +17,6 @@ class HomeController extends Controller
             'cloth' => $clothProducts,
             'food' => $foodProducts,
             'toy' => $toyProducts,
-        ]);
-    }
-
-    public function test(Request $req) {
-        if ($req->ver) {
-            $name = $req->name . $req->ver;
-            $age = $req->age . $req->ver;
-        }
-        
-        return view('test', [
-            'name' => $name,
-            'age' => $age,
         ]);
     }
 }

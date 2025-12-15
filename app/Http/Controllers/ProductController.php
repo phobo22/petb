@@ -27,7 +27,7 @@ class ProductController extends Controller
                 ])
             ->paginate(12);
 
-        return view('products', [
+        return view('products.index', [
             'products' => $products,
             'dog' => $request->dog,
             'cat' => $request->cat,
@@ -46,7 +46,7 @@ class ProductController extends Controller
 
         $relatedProducts = $query->whereNot('id', $product->id)->paginate(8);
 
-        return view('single-product', [
+        return view('products.show', [
             'product' => $product,
             'relatedProducts' => $relatedProducts,
         ]);
