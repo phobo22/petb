@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\PasswordResetController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -29,7 +30,33 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::controller(UserProfileController::class)->group(function () {
-    Route::get('/user/{profile}', 'show')->name('profile.show')->middleware('auth');
-    Route::get('/user/{profile}/edit', 'edit')->name('profile.edit')->middleware('auth');
-    Route::put('/user/{profile}', 'update')->name('profile.update')->middleware('auth');
+    Route::get('/user/{profile}', 'show')->name('profile.show')
+        ->middleware('auth')
+        ->can('view-profile', 'profile');
+
+    Route::get('/user/{profile}/edit', 'edit')->name('profile.edit')
+        ->middleware('auth')
+        ->can('view-profile', 'profile');
+
+    Route::put('/user/{profile}', 'update')->name('profile.update')
+        ->middleware('auth')
+        ->can('view-profile', 'profile');
+});
+
+Route::controller(PasswordResetController::class)->group(function () {
+    Route::get('/forgot-password', 'forgot')
+        ->middleware('guest')
+        ->name('password.forgot');
+
+    Route::post('/forgot-password', 'send')
+        ->middleware('guest')
+        ->name('password.email');
+
+    Route::get('/reset-password/{token}', 'reset')
+        ->middleware('guest')
+        ->name('password.reset');
+
+    Route::post('/reset-password', 'update')
+        ->middleware('guest')
+        ->name('password.update');
 });
