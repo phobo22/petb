@@ -11,26 +11,20 @@
                 <div class="mb-3">
                     <label for="email" class="form-label fw-bold">Email</label>
                     <input type="email" class="form-control my-field" id="email" name="email" required>
-                    @error('email')
-                        <p class="text-danger small">{{ $message }}</p>
-                    @enderror
                 </div>
 
                 <div class="mb-3">
                     <label for="password" class="form-label fw-bold">Password</label>
-                    <input type="password" class="form-control" name="password" id="password" required style="background-color:#F2EDE6;">
-                    @error('password')
-                        <p class="text-danger small">{{ $message }}</p>
-                    @enderror
+                    <input type="password" class="form-control my-field" name="password" id="password" required>
                 </div>
 
                 @error('credentials')
-                    <p class="text-danger small">{{ $message }}</p>
+                    <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
 
                 <div class="d-flex justify-content-between mb-3">
                     <a href="{{ route('register.page') }}">Create account?</a>
-                    <a href="{{ route('register.page') }}">Forgot password?</a>
+                    <a href="{{ route('password.forgot') }}">Forgot password?</a>
                 </div>
 
                 <button type="submit" class="btn btn-primary w-100 mt-3">Login</button>

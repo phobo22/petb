@@ -35,7 +35,7 @@
 
                 <div class="mb-3">
                     <label for="password" class="form-label fw-bold">Password</label>
-                    <input type="password" class="form-control my-field" name="password" id="password" required style="background-color:#F2EDE6;">
+                    <input type="password" class="form-control my-field" name="password" id="password" required>
                     @error('password')
                         <p class="text-danger small">{{ $message }}</p>
                     @enderror
