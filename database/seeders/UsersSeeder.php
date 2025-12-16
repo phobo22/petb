@@ -23,8 +23,6 @@ class UsersSeeder extends Seeder
             ->afterCreating(function (User $user) {
                 UserProfile::factory()->create([
                     'user_id' => $user->id,
-                    'firstname' => $user->firstname,
-                    'lastname' => $user->lastname,
                 ]);
             })
             ->create();
