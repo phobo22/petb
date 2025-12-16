@@ -8,8 +8,10 @@
             <form method="POST" action="{{ route('password.email') }}">
                 @csrf
 
-                <label>Enter your email</label>
-                <input type="email" name="email" class="form-control" required>
+                <div class="mb-3">
+                    <label for="email" class="form-label fw-bold">Enter your email</label>
+                    <input type="email" class="form-control my-field" name="email" id="email" required>
+                </div>
 
                 @error('email')
                     <div class="alert alert-danger mt-3">{{ $message }}</div>

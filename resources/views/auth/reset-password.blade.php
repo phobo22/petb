@@ -11,10 +11,14 @@
                 <input type="hidden" name="token" value="{{ $token }}">
                 <input type="hidden" name="email" value="{{ request()->email }}">
                 
-                <label>New password</label>
-                <input type="password" name="password" class="form-control" required>
-                <label class="mt-3">Confirm password</label>
-                <input type="password" name="password_confirmation" class="form-control" required>
+                <div class="mb-3">
+                    <label for="password" class="form-label fw-bold">New Password</label>
+                    <input type="password" class="form-control my-field" name="password" id="password" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password_confirmation" class="form-label fw-bold">Confirm Password</label>
+                    <input type="password" class="form-control my-field" name="password_confirmation" id="password_confirmation" required>
+                </div>
 
                 @error('password')
                     <div class="alert alert-danger mt-4">{{ $message }}</div>

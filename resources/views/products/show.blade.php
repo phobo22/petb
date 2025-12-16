@@ -49,15 +49,7 @@
                 </li>
             </ul>
 
-            <div class="tab-content ms-5">
-                aiudfghsdugfsjgfsdjhgfsdhjgfhjsdgfsdjhgfsdhjgfsdjhgfsdjhgf
-                sdkfjhsdkjhfsdkjfhsdkjhfskdjhfsdkjhfsdkjhfsdkjhfsdkjfhsdkjfh
-                aiudfghsdugfsjgfsdjhgfsdhjgfhjsdgfsdjhgfsdhjgfsdjhgfsdjhgf
-                sdkfjhsdkjhfsd
-                kjfhsdkjhfskdjhfsdkjhfsdkjhfsdkjhfsdkjfhsdkjfh
-                aiudfghsdugfsjgfsdjhgfsdhjgfhjsdgfsdjhgfsdhjgfsdjhgfsdjhgf
-                sdkfjhsdkjhfsdkjfhsdkjhfskdjhfsdkjhfsdkjhfsdkjhfsdkjfhsdkjfh
-            </div>
+            <div class="tab-content ms-5">{{ $product->description }}</div>
         </div>
 
         <div class="container-fluid"><hr class="m-0"></div>
