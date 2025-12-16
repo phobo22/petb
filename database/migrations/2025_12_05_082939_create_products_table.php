@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('category');
             $table->string('for');
             $table->float('price', 2);
+            $table->text('description');
             $table->integer('reviews')->default(0);
             $table->string('image');
         });
