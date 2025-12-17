@@ -208,7 +208,7 @@
                                             <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="pages">
-                                            <li><a href="{{ route('profile.show', auth()->user()->profile ) }}" class="dropdown-item">Settings</a></li>
+                                            <li><a href="{{ route('profile.index') }}" class="dropdown-item">Settings</a></li>
                                             <li>
                                                 <form action="{{ route('logout') }}" method="POST" onclick="this.submit()">
                                                     @csrf
@@ -241,6 +241,8 @@
             </nav>
         </div>
     </header>
+
+    <div class="container-fluid"><hr class="m-0"></div>
 
     @yield('content')
 

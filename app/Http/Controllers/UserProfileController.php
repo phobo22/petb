@@ -1,22 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\UserProfile;
 
 class UserProfileController extends Controller
 {
-    public function show(UserProfile $profile) {
-        return view('profiles.show', ['page' => 'show', 'profile' => $profile]);
+    public function index() {
+        return view('profiles.index');
     }
 
-    public function edit(UserProfile $profile) {
-        return view('profiles.show', ['page' => 'edit', 'profile' => $profile]);
+    public function show(Request $request) {
+        return view('profiles.show', ['profile' => $request->user()->profile]);
     }
 
-    public function update(Request $request, UserProfile $profile) {
+    public function edit(Request $request) {
+        return view('profiles.edit', ['profile' => $request->user()->profile]);
+    }
+
+    public function update(Request $request) {
         $validated = $request->validate([
             'firstname' => 'required|string|min:3|max:15',
             'lastname' => 'required|string|min:3|max:15',
@@ -26,7 +27,7 @@ class UserProfileController extends Controller
             'address' => 'string',
         ]);
 
-        $profile->update($validated);
-        return redirect()->route('profile.show', $profile)->with('success', 'Update profile successfully !!');
+        $request->user()->profile->update($validated);
+        return redirect()->route('profile.show')->with('success', 'Update profile successfully !!');
     }
 }
