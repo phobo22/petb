@@ -25,8 +25,8 @@
 
                     <div class="mb-3">
                         <label class="form-label fw-bold ms-3">Gender</label>
-                        <input class="ms-5" type="radio" name="gender" value="1" {{ $profile->gender == true ? 'checked' : '' }} disabled> Male
-                        <input class="ms-3" type="radio" name="gender" value="0" {{ $profile->gender == false ? 'checked' : '' }} disabled> Female
+                        <input class="ms-5" type="radio" name="gender" value="1" {{ $profile->gender === 1 ? 'checked' : '' }} disabled> Male
+                        <input class="ms-3" type="radio" name="gender" value="0" {{ $profile->gender === 0 ? 'checked' : '' }} disabled> Female
                     </div>
 
                     <div class="mb-3">

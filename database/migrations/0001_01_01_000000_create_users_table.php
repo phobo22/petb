@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 
 return new class extends Migration
 {
@@ -34,6 +35,17 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        Schema::create('user_profiles', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(User::class, 'user_id')->constrained()->onDelete('cascade');
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->boolean('gender')->nullable();
+            $table->date('dob')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+        });
     }
 
     /**
@@ -44,5 +56,6 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('user_profiles');
     }
 };

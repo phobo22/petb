@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\UserProfile;
+use App\Models\Cart;
+use App\Models\CartItem;
 
 class UsersSeeder extends Seeder
 {
@@ -23,6 +24,18 @@ class UsersSeeder extends Seeder
             ->afterCreating(function (User $user) {
                 UserProfile::factory()->create([
                     'user_id' => $user->id,
+                ]);
+
+                Cart::factory()
+                    ->afterCreating(function (Cart $cart) {
+                        CartItem::factory()
+                            ->count(2)
+                            ->create([
+                                'cart_id' => $cart->id,
+                        ]);
+                    })
+                    ->create([
+                        'user_id' => $user->id,
                 ]);
             })
             ->create();

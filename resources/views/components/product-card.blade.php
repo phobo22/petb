@@ -19,11 +19,6 @@
                     {{ $product->reviews }}.0
                 </span>
                 <h3 class="secondary-font text-primary">${{ $product->price }}</h3>
-                <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                        <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                </div>
             </div>
         </div>
     </div>
