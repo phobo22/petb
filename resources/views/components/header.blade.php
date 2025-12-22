@@ -42,7 +42,7 @@
                 <div class="offcanvas-body justify-content-between">
                     <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
                         <li class="nav-item">
-                            <a href="{{ route('home') }}" class="nav-link active">Home</a>
+                            <a href="{{ route('home') }}" class="nav-link">Home</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown"
@@ -65,9 +65,9 @@
                         <ul class="d-flex justify-content-end list-unstyled m-0">
                             <li class="nav-item dropdown">
                                 @auth
-                                    <a class="nav-link" role="button" id="pages" data-bs-toggle="dropdown"
+                                    <a class="nav-link dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown"
                                         aria-expanded="false">
-                                        <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
+                                        {{ $username }}
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="pages">
                                         <li><a href="{{ route('profile.index') }}" class="dropdown-item">Settings</a></li>
@@ -90,7 +90,7 @@
                             <li>
                                 <a href="{{ route('cart.index') }}" class="mx-3">
                                     <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
-                                    <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">03</span>
+                                    <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">{{ $productCount }}</span>
                                 </a>
                             </li>
                         </ul>

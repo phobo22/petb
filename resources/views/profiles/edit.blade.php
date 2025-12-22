@@ -20,7 +20,7 @@
                         @error('firstname')
                             <span class="invalid-feedback d-block ms-4">{{ $message }}</span>
                         @enderror
-                        <input type="text" class="form-control my-field ms-4" style="width:800px;" name="firstname" value="{{ old('firstname', $profile->firstname) }}">
+                        <input type="text" class="form-control my-field ms-4" style="width:800px;" name="firstname" value="{{ old('firstname', $profile->firstname) }}" required>
                     </div>
                     
 
@@ -29,7 +29,7 @@
                         @error('lastname')
                             <span class="invalid-feedback d-block ms-4">{{ $message }}</span>
                         @enderror
-                        <input type="text" class="form-control my-field ms-4" style="width:800px;" name="lastname" value="{{ old('lastname', $profile->lastname) }}">
+                        <input type="text" class="form-control my-field ms-4" style="width:800px;" name="lastname" value="{{ old('lastname', $profile->lastname) }}" required>
                     </div>
 
                     <div class="mb-3">
@@ -37,8 +37,8 @@
                         @error('gender')
                             <span class="invalid-feedback d-block ms-4">{{ $message }}</span>
                         @enderror
-                        <input class="ms-5" type="radio" name="gender" value="1" {{ $profile->gender == true ? 'checked' : '' }}> Male
-                        <input class="ms-3" type="radio" name="gender" value="0" {{ $profile->gender == false ? 'checked' : '' }}> Female
+                        <input class="ms-5" type="radio" name="gender" value="1" {{ $profile->gender === 1 ? 'checked' : '' }}> Male
+                        <input class="ms-3" type="radio" name="gender" value="0" {{ $profile->gender === 0 ? 'checked' : '' }}> Female
                     </div>
 
                     <div class="mb-3">

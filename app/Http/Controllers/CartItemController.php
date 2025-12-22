@@ -2,58 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\CartItem;
+use App\Services\CartService;
 
 class CartItemController extends Controller
 {
-    private function getCartItems(Request $request) {
-        if (Auth::check()) {
-            $user = $request->user();
-            $cart = $user->cart()->with('items.product')->first();
-            return $cart->items;
-        }
-    }
-
-    public function index(Request $request) {
-        $cartItems = $this->getCartItems($request);
-        foreach ($cartItems as $item) {
-            $item['subtotal'] = bcmul($item->product->price, $item->quantity, 2);
-        }
-
-        $totalPrice = 0;
-        foreach ($cartItems as $item) {
-            $totalPrice += $item['subtotal'];
-        }
+    public function index(Request $request, CartService $cartService) {
+        $cart = $cartService->resolve($request);
+        $cartData = $cartService->processData($cart);
 
         return view('cart.index', [
-            'items' => $cartItems,
-            'totalPrice' => $totalPrice,
+            'items' => $cartData['items'],
+            'totalPrice' => $cartData['totalPrice'],
         ]);
     }
 
-    public function store(Request $request) {
+    public function store(Request $request, CartService $cartService) {
         $request->validate([
             'quantity' => 'required|integer',
+            'product_id' => 'required|integer',
         ]);
 
-        $cartItems = $this->getCartItems($request);
-        $existingItem = $cartItems->firstWhere('product_id', $request->product_id);
+        // get cart and add product
+        $cart = $cartService->resolve($request);
+        $cartService->addProduct($cart, $request->product_id, $request->quantity);
         
-        if ($existingItem) {
-            $existingItem->increment('quantity', $request->quantity);
-            return back()->with('success', 'Item is added to cart !!');
-        } 
-
-        else {
-            CartItem::create([
-                'cart_id' => $request->user()->cart->id,
-                'product_id' => $request->product_id,
-                'quantity' => $request->quantity,
-            ]);
-            return back()->with('success', 'Item is added to cart !!');
-        }
+        return back()->with('success', 'Item is added to cart !!');
     }
 
     public function update(string $method, CartItem $cartItem) {
@@ -63,9 +38,15 @@ class CartItemController extends Controller
             } else {
                 $cartItem->decrement('quantity');
             }
+            return back();
         }
 
         $cartItem->increment('quantity');
         return back();
+    }
+
+    public function destroy(CartItem $cartItem) {
+        $cartItem->delete();
+        return back()->with('success', 'Remove items successfully !!');
     }
 }

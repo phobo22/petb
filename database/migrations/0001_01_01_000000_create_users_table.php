@@ -41,10 +41,10 @@ return new class extends Migration
             $table->foreignIdFor(User::class, 'user_id')->constrained()->onDelete('cascade');
             $table->string('firstname');
             $table->string('lastname');
-            $table->boolean('gender');
-            $table->date('dob');
-            $table->string('phone');
-            $table->string('address');
+            $table->boolean('gender')->nullable();
+            $table->date('dob')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
         });
     }
 

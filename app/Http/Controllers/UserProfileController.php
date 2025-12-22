@@ -21,10 +21,10 @@ class UserProfileController extends Controller
         $validated = $request->validate([
             'firstname' => 'required|string|min:3|max:15',
             'lastname' => 'required|string|min:3|max:15',
-            'dob' => 'date',
-            'gender' => 'in:0,1',
-            'phone' => 'string',
-            'address' => 'string',
+            'dob' => 'date|nullable',
+            'gender' => 'in:0,1|nullable',
+            'phone' => 'string|nullable',
+            'address' => 'string|nullable',
         ]);
 
         $request->user()->profile->update($validated);

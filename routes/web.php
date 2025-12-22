@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\PasswordResetController;
@@ -98,6 +99,9 @@ Route::controller(ChangePasswordController::class)->group(function () {
 });
 
 
-Route::get('/cart', function () {
-    return view('cart.index');
-})->name('cart.index');
+Route::controller(CartItemController::class)->group(function () {
+    Route::get('/cart', 'index')->name('cart.index');
+    Route::post('/cart', 'store')->name('cart.store');
+    Route::get('/cart/update/{method}/{cartItem}', 'update')->name('cart.update');
+    Route::delete('/cart/{cartItem}', 'destroy')->name('cart.delete');
+});

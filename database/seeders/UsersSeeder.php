@@ -29,7 +29,7 @@ class UsersSeeder extends Seeder
                 Cart::factory()
                     ->afterCreating(function (Cart $cart) {
                         CartItem::factory()
-                            ->count(3)
+                            ->count(2)
                             ->create([
                                 'cart_id' => $cart->id,
                         ]);

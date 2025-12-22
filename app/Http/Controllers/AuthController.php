@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\UserProfile;
+use App\Models\Cart;
 
 class AuthController extends Controller
 {
@@ -27,8 +28,6 @@ class AuthController extends Controller
         ]);
 
         $user = User::create([
-            // 'firstname' => $validated['firstname'],
-            // 'lastname' => $validated['lastname'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
         ]);
@@ -38,6 +37,8 @@ class AuthController extends Controller
             'firstname' => $validated['firstname'],
             'lastname' => $validated['lastname'],
         ]);
+
+        Cart::create(['user_id' => $user->id]);
 
         Auth::login($user);
         $request->session()->regenerate();
