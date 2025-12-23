@@ -21,8 +21,6 @@ class UserProfileFactory extends Factory
             'lastname' => fake()->lastName(),
             'gender' => fake()->boolean(),
             'dob' => fake()->date('Y-m-d'),
-            'phone' => fake()->phoneNumber(),
-            'address' => fake()->address(),
         ];
     }
 }

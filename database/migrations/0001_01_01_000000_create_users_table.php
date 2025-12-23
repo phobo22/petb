@@ -43,8 +43,6 @@ return new class extends Migration
             $table->string('lastname');
             $table->boolean('gender')->nullable();
             $table->date('dob')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('address')->nullable();
         });
     }
 

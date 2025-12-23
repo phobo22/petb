@@ -18,8 +18,6 @@ class UserProfile extends Model
         'lastname',
         'gender',
         'dob',
-        'phone',
-        'address',
     ];
 
     public function user(): BelongsTo { 
