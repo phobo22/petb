@@ -8,6 +8,8 @@ use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ShippingAddressController;
 
 // home page
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -31,7 +33,7 @@ Route::get('/products/{product}', [ProductController::class, 'show'])
 
 // authentication
 Route::controller(AuthController::class)->group(function () {
-    Route::get('/login', 'login')->name('login.page')->middleware('guest');
+    Route::get('/login', 'login')->name('login')->middleware('guest');
     Route::post('/login', 'handleLogin')->name('login.submit')->middleware('guest');
 
     Route::get('/register', 'register')->name('register.page')->middleware('guest');
@@ -99,9 +101,49 @@ Route::controller(ChangePasswordController::class)->group(function () {
 });
 
 
+// cart and item in cart controller
 Route::controller(CartItemController::class)->group(function () {
     Route::get('/cart', 'index')->name('cart.index');
     Route::post('/cart', 'store')->name('cart.store');
     Route::get('/cart/update/{method}/{cartItem}', 'update')->name('cart.update');
     Route::delete('/cart/{cartItem}', 'destroy')->name('cart.delete');
+});
+
+
+// checkout process
+Route::controller(CheckoutController::class)->group(function () {
+    Route::post('/checkout/select', 'select')
+        ->middleware('auth')
+        ->name('checkout.select');
+
+    Route::get('/checkout', 'preview')
+        ->middleware('auth')
+        ->name('checkout.preview');
+
+    Route::post('checkout/order', 'order')
+        ->middleware('auth')
+        ->name('checkout.order');
+});
+
+
+// shipping address
+Route::controller(ShippingAddressController::class)->group(function () {
+    Route::get('/shipping-address', 'index')->middleware('auth')->name('address.index');
+    Route::get('/shipping-address/create', 'create')->middleware('auth')->name('address.create');
+    Route::post('/shipping-address', 'store')->middleware('auth')->name('address.store');
+
+    Route::get('/shipping-address/{address}/edit', 'edit')
+        ->middleware('auth')
+        ->can('view-address', 'address')
+        ->name('address.edit');
+
+    Route::put('/shipping-address/{address}', 'update')
+        ->middleware('auth')
+        ->can('view-address', 'address')
+        ->name('address.update');
+
+    Route::delete('/shipping-address/{address}', 'destroy')
+        ->middleware('auth')
+        ->can('view-address', 'address')
+        ->name('address.destroy');
 });
