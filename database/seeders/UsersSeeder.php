@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\UserProfile;
 use App\Models\Cart;
 use App\Models\CartItem;
+use App\Models\ShippingAddress;
 
 class UsersSeeder extends Seeder
 {
@@ -36,6 +37,10 @@ class UsersSeeder extends Seeder
                     })
                     ->create([
                         'user_id' => $user->id,
+                ]);
+
+                ShippingAddress::factory()->count(2)->create([
+                    'user_id' => $user->id,
                 ]);
             })
             ->create();
