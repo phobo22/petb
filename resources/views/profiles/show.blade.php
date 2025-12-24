@@ -34,16 +34,6 @@
                         <input class="ms-3 my-field" type="date" name="dob" value="{{ $profile->dob }}" readonly>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label fw-bold ms-3">Phone Number</label>
-                        <input type="text" class="form-control my-field ms-4" style="width:800px;" name="phone" value="{{ $profile->phone }}" readonly>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label fw-bold ms-3">Address</label>
-                        <input type="text" class="form-control my-field ms-4" style="width:800px;" name="address" value="{{ $profile->address }}" readonly>
-                    </div>
-
                     <div class="d-flex justify-content-evenly">
                         <a href="{{ route('profile.edit') }}" class="btn btn-outline-primary">EDIT</a>
                     </div>

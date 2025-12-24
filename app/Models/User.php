@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Auth\Passwords\CanResetPassword;
 
 class User extends Authenticatable
@@ -53,5 +54,9 @@ class User extends Authenticatable
 
     public function cart(): HasOne {
         return $this->hasOne(Cart::class);
+    }
+
+    public function shippingAddresses() : HasMany {
+        return $this->hasMany(ShippingAddress::class);
     }
 }

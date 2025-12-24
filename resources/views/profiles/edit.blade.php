@@ -49,22 +49,6 @@
                         <input class="ms-3 my-field" type="date" name="dob" value="{{ old('dob', $profile->dob) }}">
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label fw-bold ms-3">Phone Number</label>
-                        @error('phone')
-                            <span class="invalid-feedback d-block ms-4">{{ $message }}</span>
-                        @enderror
-                        <input type="text" class="form-control my-field ms-4" style="width:800px;" name="phone" value="{{ old('phone', $profile->phone) }}">
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label fw-bold ms-3">Address</label>
-                        @error('address')
-                            <span class="invalid-feedback d-block ms-4">{{ $message }}</span>
-                        @enderror
-                        <input type="text" class="form-control my-field ms-4" style="width:800px;" name="address" value="{{ old('address', $profile->address) }}">
-                    </div>
-
                     <div class="d-flex justify-content-evenly">
                         <a href="{{ url()->previous() }}" class="btn btn-outline-dark">Discard</a>
                         <button type="submit" class="btn btn-outline-primary">UPDATE</button>

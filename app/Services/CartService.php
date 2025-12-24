@@ -33,12 +33,9 @@ class CartService {
             $cartItems = $cart->items;
 
             if ($cartItems !== null) {
-                foreach ($cartItems as $item) {
-                    $item['subtotal'] = bcmul($item->product->price, $item->quantity, 2);
-                }
-                
                 $totalPrice = 0;
                 foreach ($cartItems as $item) {
+                    $item['subtotal'] = bcmul($item->product->price, $item->quantity, 2);
                     $totalPrice += $item['subtotal'];
                 }
 

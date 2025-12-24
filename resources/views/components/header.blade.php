@@ -13,7 +13,7 @@
                     <form id="search-form" class="text-center d-flex align-items-center" action="{{ request()->is('/') ? route('products.index') : url()->current() }}" method="GET">
                         <input type="text" name="search" class="form-control border-0 bg-transparent"
                             placeholder="Search for more than 10,000 products" />
-                        @foreach (request()->except('search') as $key => $value)
+                        @foreach (request()->except(['search', 'cartItems']) as $key => $value)
                             <input type="hidden" name="{{ $key }}" value="{{ $value }}">
                         @endforeach
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -70,6 +70,8 @@
                                         {{ $username }}
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="pages">
+                                        <li><a href="#" class="dropdown-item">Orders</a></li>
+                                        <li><a href="{{ route('address.index') }}" class="dropdown-item">Address Information</a></li>
                                         <li><a href="{{ route('profile.index') }}" class="dropdown-item">Settings</a></li>
                                         <li>
                                             <form action="{{ route('logout') }}" method="POST" onclick="this.submit()">
@@ -81,7 +83,7 @@
                                 @endauth
 
                                 @guest
-                                    <a href="{{ route('login.page') }}" class="nav-link" id="pages" aria-expanded="false">
+                                    <a href="{{ route('login') }}" class="nav-link" id="pages" aria-expanded="false">
                                         <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
                                     </a>
                                 @endguest
