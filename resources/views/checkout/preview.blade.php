@@ -7,10 +7,12 @@
 @section('content')
 <div class="container py-5" style="max-width: 1000px;">
     <h2 class="mb-4">🧾 Checkout</h2>
-    <form method="POST">
+    <form method="POST" action="{{ route('order.store') }}">
         @csrf
 
-        <input type="hidden" name="items" value="{{ $items }}">
+        @if(session('addr_failed'))
+            <div class="alert alert-danger">{{ session('addr_failed') }}</div>
+        @endif
 
         {{-- ================= USER INFO ================= --}}
         <div class="card mb-5 border border-dark">
@@ -60,6 +62,8 @@
                                 <td class="text-center">{{ $item->quantity }}
                                 <td class="text-end">${{ $item->subtotal }}</td>
                             </tr>
+
+                            <input type="hidden" name="cartItemsId[]" value="{{ $item->id }}">
                         @endforeach
                     </tbody>
 
@@ -67,11 +71,16 @@
                         <tr>
                             <td colspan="2" class="text-end fw-bold">Total</td>
                             <td class="text-end fw-bold fs-5">${{ $totalPrice }}</td>
+                            <input type="hidden" name="totalPrice" value="{{ $totalPrice }}">
                         </tr>
                     </tfoot>
                 </table>
             </div>
         </div>
+
+        @if(session('payment_method_failed'))
+            <div class="alert alert-danger">{{ session('payment_method_failed') }}</div>
+        @endif
 
         {{-- ================= PAYMENT METHOD ================= --}}
         <div class="card mb-4 border border-dark">

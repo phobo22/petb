@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\ShippingAddress;
+use App\Models\Order;
 
 class AppServiceProvider extends ServiceProvider
 {

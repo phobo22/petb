@@ -25,6 +25,10 @@ class Product extends Model
         return $this->hasMany(CartItem::class);
     }
 
+    public function orderDetails(): HasMany {
+        return $this->hasMany(OrderDetail::class);
+    }
+
     protected function scopeCategory(Builder $query, string $category) : void {
         $query->where('category', $category);
     }

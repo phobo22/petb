@@ -10,6 +10,7 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ShippingAddressController;
+use App\Http\Controllers\OrderController;
 
 // home page
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -146,4 +147,21 @@ Route::controller(ShippingAddressController::class)->group(function () {
         ->middleware('auth')
         ->can('view-address', 'address')
         ->name('address.destroy');
+});
+
+
+Route::controller(OrderController::class)->group(function () {
+    Route::get('/order/in-progress', 'waiting')->middleware('auth')->name('order.waiting');
+    Route::get('/order/done', 'done')->middleware('auth')->name('order.done');
+    Route::post('/order', 'store')->middleware('auth')->name('order.store');
+
+    Route::put('/order/{order}', 'update')
+        ->middleware('auth')
+        ->can('update', 'order')
+        ->name('order.update');
+
+    Route::delete('/order/{order}', 'destroy')
+        ->middleware('auth')
+        ->can('update', 'order')
+        ->name('order.destroy');
 });
