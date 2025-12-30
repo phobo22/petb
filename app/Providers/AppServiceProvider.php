@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Cart;
-use App\Models\UserProfile;
 use App\Models\CartItem;
+use App\Models\ShippingAddress;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,8 +27,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('view-profile', function (User $user, UserProfile $profile) {
-            return $profile->user->is($user);
+        Gate::define('view-address', function (User $user, ShippingAddress $addr) {
+            return $addr->user->is($user);
         });
 
         View::composer('*', function ($view) {

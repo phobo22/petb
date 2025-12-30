@@ -23,8 +23,6 @@ class UserProfileController extends Controller
             'lastname' => 'required|string|min:3|max:15',
             'dob' => 'date|nullable',
             'gender' => 'in:0,1|nullable',
-            'phone' => 'string|nullable',
-            'address' => 'string|nullable',
         ]);
 
         $request->user()->profile->update($validated);
