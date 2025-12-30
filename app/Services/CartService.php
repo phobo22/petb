@@ -108,4 +108,10 @@ class CartService {
         $guestCart->delete();
         return;
     }
+
+    public function removeItemAfterOrder(User $user, array $productsId) {
+        $user->cart->items()->whereIn('product_id', $productsId)->delete();
+        return;
+    }
+
 }
