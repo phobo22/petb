@@ -70,7 +70,7 @@
                                         {{ $username }}
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="pages">
-                                        <li><a href="#" class="dropdown-item">Orders</a></li>
+                                        <li><a href="{{ route('order.waiting') }}" class="dropdown-item">Orders</a></li>
                                         <li><a href="{{ route('address.index') }}" class="dropdown-item">Address Information</a></li>
                                         <li><a href="{{ route('profile.index') }}" class="dropdown-item">Settings</a></li>
                                         <li>

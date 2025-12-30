@@ -34,7 +34,7 @@ class CheckoutController extends Controller
             return back()->with('error', 'Please select at least one item');
         }
 
-        Cookie::queue(Cookie::forget('cart_items_id'));
+        //Cookie::queue(Cookie::forget('cart_items_id'));
 
         $items = CartItem::whereIn('id', $cartItems)->with('product')->get();
         $totalPrice = 0;
