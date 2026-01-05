@@ -165,3 +165,18 @@ Route::controller(OrderController::class)->group(function () {
         ->can('update', 'order')
         ->name('order.destroy');
 });
+
+// use App\Models\Order;
+// Route::get('/test', function () {
+//     $order = Order::where('id', '5')->first();
+//     $details = $order->details;
+//     $productsId = [];
+//     foreach($details as $item) {
+//         $productsId[] = $item->product_id;
+//     }
+
+//     $user = $order->user;
+//     $user->cart->items()->whereIn('product_id', $productsId)->delete();
+//     if (count($user->cart->items) === 0) return 'success';
+//     return 'failed';
+// });

@@ -19,6 +19,10 @@
             </div>
         @endif
 
+        @if(session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+
         @foreach ($orders as $order)
             {{-- ================= ORDER DETAILS ================= --}}
             <div class="card mb-5 border border-dark">
@@ -26,7 +30,10 @@
                     style="background-color:{{ $order->status === 'in_progress' ? '#DEAD6F' : '#439E3A' }};
                             font-size:20px;">
 
-                    <span>Order Detail</span>
+                    <div>
+                        <span>Date Order:</span>
+                        <span class="ms-2" style="font-size:16px;">{{ $order->order_at }}</span>
+                    </div>
                     @can('update', $order)
                         <div class="d-flex">
                             <form method="POST" action="{{ route('order.update', $order) }}" 

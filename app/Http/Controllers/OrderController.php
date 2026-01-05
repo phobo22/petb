@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\CartItem;
+use App\Jobs\SendConfirmOrderMail;
+use App\Events\OrderPlaced;
 
 class OrderController extends Controller
 {
@@ -16,33 +18,7 @@ class OrderController extends Controller
                         ->with(['details.product', 'shippingInfo'])
                         ->orderBy('order_at', 'desc')
                         ->get();
-        return $orders;                   
-        // $data = [];
-        // foreach($orders as $order) {
-
-        //     $products = [];
-        //     foreach ($order->details as $item) {
-        //         $products[] = [
-        //             'name' => $item->product->name,
-        //             'price' => $item->product->price,
-        //             'image' => $item->product->image,
-        //             'quantity' => $item->quantity,
-        //         ];
-        //     }
-
-        //     $data[] = [
-        //         'id' => $order->id,
-        //         'fullname' => $order->shippingInfo->receiver_fullname,
-        //         'phone' => $order->shippingInfo->phone,
-        //         'address' => $order->shippingInfo->address,
-        //         'order_at' => $order->order_at,
-        //         'total' => $order->total,
-        //         'status' => ($status === 'in_progress') ? '#DEAD6F' : '#439E3A',
-        //         'products' => $products,
-        //     ];
-        // }
-
-        // return $data;
+        return $orders;
     }
 
     public function waiting(Request $request) {
@@ -83,6 +59,8 @@ class OrderController extends Controller
             ]);
         }
 
+        SendConfirmOrderMail::dispatch($order);
+        event(new OrderPlaced($order));
         return redirect()->route('order.waiting')->with('success', 'Order successfully !!');
     }
 
@@ -94,6 +72,6 @@ class OrderController extends Controller
 
     public function destroy(Order $order) {
         $order->delete();
-        return back();
+        return back()->with('success', 'Your order has been deleted !!');
     }
 }
