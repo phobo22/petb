@@ -17,7 +17,6 @@ class Product extends Model
         'name',
         'price',
         'description',
-        'reviews',
         'image',
     ];
 
@@ -27,6 +26,10 @@ class Product extends Model
 
     public function orderDetails(): HasMany {
         return $this->hasMany(OrderDetail::class);
+    }
+
+    public function reviewss() : HasMany {
+        return $this->hasMany(Review::class);
     }
 
     protected function scopeCategory(Builder $query, string $category) : void {
@@ -48,9 +51,6 @@ class Product extends Model
         if ($req['price']) {
             if ($req['price'] === 'asc') $query->orderBy('price', 'asc');
             else $query->orderBy('price', 'desc');
-        } else {
-            if ($req['rating'] === 'asc') $query->orderBy('reviews', 'asc');
-            else $query->orderBy('reviews', 'desc');
         }
     }
 }

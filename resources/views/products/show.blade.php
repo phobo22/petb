@@ -1,4 +1,4 @@
-@props(['product', 'relatedProducts'])
+@props(['product', 'reviews', 'relatedProducts'])
 
 @extends('layouts.app')
 
@@ -43,13 +43,47 @@
 
         {{-- Tabs: Specs / Reviews --}}
         <div class="mt-5">
-            <div class="mb-5">
-                <ul class="nav nav-tabs mb-3" id="productTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active fw-bold" id="desc-tab" data-bs-toggle="tab" data-bs-target="#desc" type="button">Description</button>
-                    </li>
-                </ul>
-                <div class="tab-content ms-5">{{ $product->description }}</div>
+            <ul class="nav nav-tabs mb-3" id="productTab" role="tablist">
+                <li class="nav-item">
+                    <button class="nav-link active fw-bold" data-bs-toggle="tab" data-bs-target="#desc">
+                        Description
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link fw-bold" data-bs-toggle="tab" data-bs-target="#reviews">
+                        Reviews ({{ count($reviews) }})
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content ms-5">
+                {{-- Description --}}
+                <div class="tab-pane fade show active" id="desc">
+                    {{ $product->description }}
+                </div>
+
+                {{-- Reviews --}}
+                <div class="tab-pane fade" id="reviews">
+                    @forelse ($reviews as $review)
+                        <div class="border shadow rounded p-3 mb-3">
+                            <strong class="me-3">{{ $review->username }}</strong>
+
+                            <span class="rating secondary-font">
+                                <iconify-icon icon="clarity:star-solid" class="{{ $review->rating > 0 ? 'text-primary' : '' }}"></iconify-icon>
+                                <iconify-icon icon="clarity:star-solid" class="{{ $review->rating > 1 ? 'text-primary' : '' }}"></iconify-icon>
+                                <iconify-icon icon="clarity:star-solid" class="{{ $review->rating > 2 ? 'text-primary' : '' }}"></iconify-icon>
+                                <iconify-icon icon="clarity:star-solid" class="{{ $review->rating > 3 ? 'text-primary' : '' }}"></iconify-icon>
+                                <iconify-icon icon="clarity:star-solid" class="{{ $review->rating > 4 ? 'text-primary' : '' }}"></iconify-icon>
+                            </span>
+
+                            <p class="mb-0">{{ $review->comment }}</p>
+                            <small class="text-muted">{{ $review->created_at }}</small>
+                        </div>
+                    @empty
+                        <p>No reviews yet.</p>
+                    @endforelse
+                </div>
+                
             </div>
 
             <div class="container-fluid"><hr class="m-0"></div>
