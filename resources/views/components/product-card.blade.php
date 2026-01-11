@@ -11,12 +11,11 @@
             </a>
             <div class="card-text">
                 <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="{{ $product->reviews > 0 ? 'text-primary' : '' }}"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="{{ $product->reviews > 1 ? 'text-primary' : '' }}"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="{{ $product->reviews > 2 ? 'text-primary' : '' }}"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="{{ $product->reviews > 3 ? 'text-primary' : '' }}"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="{{ $product->reviews > 4 ? 'text-primary' : '' }}"></iconify-icon>
-                    {{ $product->reviews }}.0
+                    <iconify-icon icon="clarity:star-solid" class="{{ $product->rating > 0 ? 'text-primary' : '' }}"></iconify-icon>
+                    <iconify-icon icon="clarity:star-solid" class="{{ $product->rating > 1 ? 'text-primary' : '' }}"></iconify-icon>
+                    <iconify-icon icon="clarity:star-solid" class="{{ $product->rating > 2 ? 'text-primary' : '' }}"></iconify-icon>
+                    <iconify-icon icon="clarity:star-solid" class="{{ $product->rating > 3 ? 'text-primary' : '' }}"></iconify-icon>
+                    <iconify-icon icon="clarity:star-solid" class="{{ $product->rating > 4 ? 'text-primary' : '' }}"></iconify-icon>
                 </span>
                 <h3 class="secondary-font text-primary">${{ $product->price }}</h3>
             </div>

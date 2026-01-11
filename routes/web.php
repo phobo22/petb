@@ -166,6 +166,7 @@ Route::controller(OrderController::class)->group(function () {
         ->name('order.destroy');
 });
 
+
 // use App\Models\Order;
 // Route::get('/test', function () {
 //     $order = Order::where('id', '5')->first();

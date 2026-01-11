@@ -22,7 +22,6 @@ class ProductFactory extends Factory
             'for' => fake()->randomElement(['dog', 'cat']),
             'price' => fake()->randomFloat(2, 2, 30),
             'description' => fake()->paragraph(10),
-            'reviews' => fake()->randomElement([0, 1, 2, 3, 4, 5]),
             'image' => fake()->randomElement(['item1', 'item2', 'item3', 'item4']) . '.jpg',
         ];
     }
