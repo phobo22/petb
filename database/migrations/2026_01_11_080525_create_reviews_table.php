@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class, 'user_id');
-            $table->foreignIdFor(Product::class, 'product_id');
-            $table->integer('rating');
-            $table->string('comment');
-            $table->date('created_at');
+            $table->foreignIdFor(User::class, 'user_id')->constrained()->onDelete('cascade');
+            $table->foreignIdFor(Product::class, 'product_id')->constrained()->onDelete('cascade');
+            $table->integer('rating')->nullable();
+            $table->string('comment')->nullable();
+            $table->enum('status', ['unrated', 'rated'])->default('unrated');
+            $table->dateTime('created_at')->nullable();
         });
     }
 
