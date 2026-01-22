@@ -11,6 +11,7 @@ use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ShippingAddressController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ReviewController;
 
 // home page
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -113,17 +114,13 @@ Route::controller(CartItemController::class)->group(function () {
 
 // checkout process
 Route::controller(CheckoutController::class)->group(function () {
-    Route::post('/checkout/select', 'select')
+    Route::post('/checkout', 'select')
         ->middleware('auth')
         ->name('checkout.select');
 
     Route::get('/checkout', 'preview')
         ->middleware('auth')
         ->name('checkout.preview');
-
-    Route::post('checkout/order', 'order')
-        ->middleware('auth')
-        ->name('checkout.order');
 });
 
 
@@ -165,6 +162,23 @@ Route::controller(OrderController::class)->group(function () {
         ->can('update', 'order')
         ->name('order.destroy');
 });
+
+
+Route::controller(ReviewController::class)->group(function () {
+    Route::get('/rating/unrated', 'unrated')->middleware('auth')->name('rating.unrated');
+    Route::get('/rating/rated', 'rated')->middleware('auth')->name('rating.rated');
+
+    Route::get('/rating/{review}/edit', 'edit')
+        ->middleware('auth')
+        ->can('rating', 'review')
+        ->name('rating.edit');
+
+    Route::put('/rating/{review}', 'update')
+        ->middleware('auth')
+        ->can('rating', 'review')
+        ->name('rating.update');
+});
+
 
 
 // use App\Models\Order;

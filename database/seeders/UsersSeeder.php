@@ -28,20 +28,20 @@ class UsersSeeder extends Seeder
                 ]);
 
                 Cart::factory()
-                    ->afterCreating(function (Cart $cart) {
-                        CartItem::factory()
-                            ->count(2)
-                            ->create([
-                                'cart_id' => $cart->id,
-                        ]);
-                    })
+                    // ->afterCreating(function (Cart $cart) {
+                    //     CartItem::factory()
+                    //         ->count(2)
+                    //         ->create([
+                    //             'cart_id' => $cart->id,
+                    //     ]);
+                    // })
                     ->create([
                         'user_id' => $user->id,
                 ]);
 
-                ShippingAddress::factory()->count(2)->create([
-                    'user_id' => $user->id,
-                ]);
+                // ShippingAddress::factory()->count(2)->create([
+                //     'user_id' => $user->id,
+                // ]);
             })
             ->create();
     }

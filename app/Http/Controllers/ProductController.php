@@ -24,11 +24,12 @@ class ProductController extends Controller
                 'dog' => $request->dog,
                 'cat' => $request->cat, 
                 'price' => $request->price,
-                ])
+            ])
             ->paginate(12);
             
         foreach($products as $product) {
             $product['rating'] = $productService->getRating($product);
+            $product['sales'] = $productService->getProductSold($product);
         }
 
         return view('products.index', [
@@ -43,16 +44,19 @@ class ProductController extends Controller
     public function show(Product $product, ProductService $productService) {
         $query = Product::query();
         $query->category($product->category);
-
         $relatedProducts = $query->whereNot('id', $product->id)->paginate(8);
+
         foreach($relatedProducts as $relatedProduct) {
             $relatedProduct['rating'] = $productService->getRating($relatedProduct);
+            $relatedProduct['sales'] = $productService->getProductSold($relatedProduct);
         }
 
-        $reviews = $product->reviewss()->with('user.profile')->get();
+        $reviews = $product->reviews()->with('user.profile')->where('status', 'rated')->get();
         foreach ($reviews as $review) {
             $review['username'] = $review->user->profile->firstname . ' ' . $review->user->profile->lastname;
         }
+
+        $product['sales'] = $productService->getProductSold($product);
 
         return view('products.show', [
             'product' => $product,

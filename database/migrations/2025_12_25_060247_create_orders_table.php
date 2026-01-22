@@ -19,17 +19,17 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class, 'user_id');
+            $table->foreignIdFor(User::class, 'user_id')->constrained()->onDelete('cascade');
             $table->foreignIdFor(ShippingAddress::class, 'shipping_info_id');
-            $table->string('payment_method');
+            $table->enum('payment_method', ['cod', 'bank_transfer']);
             $table->date('order_at');
             $table->decimal('total', 10, 2);
-            $table->string('status')->default('in_progress');
+            $table->enum('status', ['in_progress', 'done'])->default('in_progress');
         });
 
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Order::class, 'order_id');
+            $table->foreignIdFor(Order::class, 'order_id')->constrained()->onDelete('cascade');
             $table->foreignIdFor(Product::class, 'product_id');
             $table->integer('quantity');
         });

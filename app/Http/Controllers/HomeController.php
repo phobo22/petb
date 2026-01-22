@@ -13,14 +13,17 @@ class HomeController extends Controller
 
         foreach($clothProducts as $product) {
             $product['rating'] = $productService->getRating($product);
+            $product['sales'] = $productService->getProductSold($product);
         }
 
         foreach($foodProducts as $product) {
             $product['rating'] = $productService->getRating($product);
+            $product['sales'] = $productService->getProductSold($product);
         }
 
         foreach($toyProducts as $product) {
             $product['rating'] = $productService->getRating($product);
+            $product['sales'] = $productService->getProductSold($product);
         }
 
         return view('home', [

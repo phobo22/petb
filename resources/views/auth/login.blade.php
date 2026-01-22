@@ -10,11 +10,17 @@
                 <h3 class="text-center mb-4 mt-3 fw-bold">Login</h3>
                 <div class="mb-3">
                     <label for="email" class="form-label fw-bold">Email</label>
+                    @error('email')
+                        <div class="alert alert-danger">{{ $message }}</div>    
+                    @enderror
                     <input type="email" class="form-control my-field" id="email" name="email" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="password" class="form-label fw-bold">Password</label>
+                    @error('password')
+                        <div class="alert alert-danger">{{ $message }}</div>    
+                    @enderror
                     <input type="password" class="form-control my-field" name="password" id="password" required>
                 </div>
 
