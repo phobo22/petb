@@ -17,7 +17,10 @@
                     <iconify-icon icon="clarity:star-solid" class="{{ $product->rating > 3 ? 'text-primary' : '' }}"></iconify-icon>
                     <iconify-icon icon="clarity:star-solid" class="{{ $product->rating > 4 ? 'text-primary' : '' }}"></iconify-icon>
                 </span>
-                <h3 class="secondary-font text-primary">${{ $product->price }}</h3>
+                <div class="d-flex justify-content-between">
+                    <h3 class="secondary-font text-primary">${{ $product->price }}</h3>
+                    <span class="secondary-font me-4">Sold {{ $product->sales }}</span>
+                </div>
             </div>
         </div>
     </div>

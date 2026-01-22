@@ -53,17 +53,18 @@
                             <tr>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <img src="{{ asset('storage/products/' . $item->product->image) }}"
+                                        <img src="{{ asset('storage/products/' . $item['image']) }}"
                                              width="90"
                                              class="me-3 rounded">
-                                        {{ $item->product->name }}
+                                        {{ $item['name'] }}
                                     </div>
                                 </td>
-                                <td class="text-center">{{ $item->quantity }}
-                                <td class="text-end">${{ $item->subtotal }}</td>
+                                <td class="text-center">{{ $item['quantity'] }}
+                                <td class="text-end">${{ $item['subtotal'] }}</td>
                             </tr>
 
-                            <input type="hidden" name="cartItemsId[]" value="{{ $item->id }}">
+                            <input type="hidden" name="products[{{ $loop->index }}][id]" value="{{ $item['id'] }}">
+                            <input type="hidden" name="products[{{ $loop->index }}][quantity]" value="{{ $item['quantity'] }}">
                         @endforeach
                     </tbody>
 

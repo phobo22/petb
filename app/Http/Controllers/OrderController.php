@@ -8,6 +8,7 @@ use App\Models\OrderDetail;
 use App\Models\CartItem;
 use App\Jobs\SendConfirmOrderMail;
 use App\Events\OrderPlaced;
+use App\Events\OrderReceived;
 
 class OrderController extends Controller
 {
@@ -17,7 +18,7 @@ class OrderController extends Controller
                         ->where('status', $status)
                         ->with(['details.product', 'shippingInfo'])
                         ->orderBy('order_at', 'desc')
-                        ->get();
+                        ->paginate(5);
         return $orders;
     }
 
@@ -48,14 +49,13 @@ class OrderController extends Controller
             'total' => $request->totalPrice,
         ]);
 
-        $cartItemsId = $request->input('cartItemsId', []);
-        $cartItems = CartItem::whereIn('id', $cartItemsId)->get();
+        $products = $request->input('products', []);
 
-        foreach($cartItems as $item) {
+        foreach($products as $product) {
             OrderDetail::create([
                 'order_id' => $order->id,
-                'product_id' => $item->product_id,
-                'quantity' => $item->quantity,
+                'product_id' => $product['id'],
+                'quantity' => $product['quantity'],
             ]);
         }
 
@@ -67,7 +67,8 @@ class OrderController extends Controller
     public function update(Order $order) {
         $order->update(['status' => 'done']);
         $order->save();
-        return back();
+        event(new OrderReceived($order));
+        return redirect()->route('rating.unrated');
     }
 
     public function destroy(Order $order) {
