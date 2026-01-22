@@ -28,7 +28,7 @@ class Product extends Model
         return $this->hasMany(OrderDetail::class);
     }
 
-    public function reviewss() : HasMany {
+    public function reviews() : HasMany {
         return $this->hasMany(Review::class);
     }
 

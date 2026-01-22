@@ -99,7 +99,7 @@
                             </span>
                         </td>
                         <td class="text-end">
-                            <button type="submit" class="btn btn-primary" style="font-size:20px;" form="checkoutForm">
+                            <button type="submit" class="btn btn-primary" style="font-size:20px;" form="checkoutForm" name="action" value="checkout">
                                 Checkout
                             </button>
                         </td>

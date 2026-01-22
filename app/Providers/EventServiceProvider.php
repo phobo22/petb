@@ -5,8 +5,10 @@ namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Auth\Events\Login;
 use App\Events\OrderPlaced;
+use App\Events\OrderReceived;
 use App\Listeners\MergeCartAfterLogin;
 use App\Listeners\RemoveCartItemAfterOrder;
+use App\Listeners\CreateRatingAfterReceivedOrder;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -16,6 +18,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         OrderPlaced::class => [
             RemoveCartItemAfterOrder::class,
+        ],
+        OrderReceived::class => [
+            CreateRatingAfterReceivedOrder::class,
         ],
     ];
 }

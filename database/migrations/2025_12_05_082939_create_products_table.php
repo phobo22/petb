@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('category');
-            $table->string('for');
+            $table->enum('for', ['dog', 'cat']);
             $table->decimal('price', 10, 2);
             $table->text('description');
             $table->string('image');

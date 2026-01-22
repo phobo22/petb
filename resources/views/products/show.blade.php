@@ -16,13 +16,13 @@
 
             <div class="col-md-5">
                 <h1 class="h3 mb-2 fw-bold">{{ $product->name }}</h1>
-                <div class="mb-3">{{ strtoupper($product->category) }}</div>
+                <div class="mb-3">CATEGORY - {{ strtoupper($product->category) }}</div>
+                <div class="mb-3">Sold - {{ $product->sales }}</div>
                 <div class="mb-3"><span class="h4 fw-bold">${{ $product->price }}</span></div>
 
-                <form action="{{ route('cart.store') }}" method="POST" class="d-flex align-items-center justify-content-between gap-3 mb-3">
+                <form method="POST" class="d-flex align-items-center justify-content-between gap-3 mb-3">
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
-                    <input type="hidden" name="from" value="show">
 
                     <div class="input-group product-qty" style="width:120px;">
                         <button type="button" class="btn btn-outline-secondary btn-sm quantity-left-minus">-</button>
@@ -30,9 +30,15 @@
                         <button type="button" class="btn btn-outline-secondary btn-sm quantity-right-plus">+</button>
                     </div>
 
-                    <button type="submit" class="btn btn-primary btn-lg">
-                        <iconify-icon icon="mdi:cart-plus" inline></iconify-icon> Add to cart
-                    </button>
+                    <div>
+                        <button type="submit" class="btn btn-primary btn-lg btn-sm" formaction="{{ route('cart.store') }}">
+                            <iconify-icon icon="mdi:cart-plus" inline></iconify-icon> Add Cart
+                        </button>
+
+                        <button type="submit" class="btn btn-primary btn-lg btn-sm" formaction="{{ route('checkout.select') }}" name="action" value="buy">
+                            <iconify-icon icon="mdi:package-variant" inline></iconify-icon> Buy Now
+                        </button>
+                    </div>
                 </form>
 
                 <div class="mb-4">
@@ -83,7 +89,6 @@
                         <p>No reviews yet.</p>
                     @endforelse
                 </div>
-                
             </div>
 
             <div class="container-fluid"><hr class="m-0"></div>

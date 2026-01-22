@@ -21,6 +21,7 @@ class ReviewFactory extends Factory
             'product_id' => random_int(1, 16),
             'rating' => random_int(1, 5),
             'comment' => fake()->sentence(10),
+            'status' => 'rated',
             'created_at' => fake()->date('Y-m-d'),
         ];
     }
