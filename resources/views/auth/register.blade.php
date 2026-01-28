@@ -13,7 +13,7 @@
                     <label for="firstname" class="form-label fw-bold">Firstname</label>
                     <input type="text" class="form-control my-field" id="firstname" name="firstname" required">
                     @error('firstname')
-                        <p class="text-danger small">{{ $message }}</p>
+                        <p class="small" style="color: red;">{{ $message }}</p>
                     @enderror
                 </div>
 
@@ -21,7 +21,7 @@
                     <label for="lastname" class="form-label fw-bold">Lastname</label>
                     <input type="text" class="form-control my-field" id="lastname" name="lastname" required">
                     @error('lastname')
-                        <p class="text-danger small">{{ $message }}</p>
+                        <p class="small" style="color:red;">{{ $message }}</p>
                     @enderror
                 </div>
 
@@ -29,7 +29,7 @@
                     <label for="email" class="form-label fw-bold">Email</label>
                     <input type="email" class="form-control my-field" id="email" name="email" required">
                     @error('email')
-                        <p class="text-danger small">{{ $message }}</p>
+                        <p class="small" style="color:red;">{{ $message }}</p>
                     @enderror
                 </div>
 
@@ -37,7 +37,7 @@
                     <label for="password" class="form-label fw-bold">Password</label>
                     <input type="password" class="form-control my-field" name="password" id="password" required>
                     @error('password')
-                        <p class="text-danger small">{{ $message }}</p>
+                        <p class="small" style="color:red;">{{ $message }}</p>
                     @enderror
                 </div>
 
